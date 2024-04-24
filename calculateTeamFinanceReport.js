@@ -1,14 +1,16 @@
 function calculateTeamFinanceReport(salaries, team) {
   // the implementation of your function here
-  const result = {
+  const report = {
     totalBudgetTeam: 0,
   };
   for (const member of team) {
     const { specialization } = member;
     const { salary } = salaries[specialization];
-    console.log(salary);
+    const tax = parseInt(salaries[specialization].tax) / 100; // процент налога
+    const selaryGross = Math.floor(salary / (1 - tax)); // зарплата до вычета налога
+    console.log(selaryGross);
   }
-  return result;
+  return report;
 }
 
 const salaries1 = {
