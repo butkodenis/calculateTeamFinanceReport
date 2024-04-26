@@ -2,6 +2,7 @@ function calculateTeamFinanceReport(salaries, team) {
   const report = {
     totalBudgetTeam: 0,
   };
+
   for (const member of team) {
     const { specialization } = member;
     if (!salaries[specialization]) {
@@ -9,19 +10,20 @@ function calculateTeamFinanceReport(salaries, team) {
     }
     const { salary } = salaries[specialization];
     const tax = parseInt(salaries[specialization].tax) / 100; // процент налога
+
     const selaryGross = salary / (1 - tax); // зарплата до вычета налога
+    console.log(selaryGross);
     report.totalBudgetTeam += selaryGross;
+
     if (!report[`totalBudget${specialization}`]) {
       report[`totalBudget${specialization}`] = selaryGross;
     } else {
       report[`totalBudget${specialization}`] += selaryGross;
     }
-
-    console.log(selaryGross);
   }
 
   for (const key in report) {
-    report[key] = Math.round(report[key]);
+    report[key] = Math.floor(report[key]);
   }
   return report;
 }
@@ -65,3 +67,6 @@ const team2 = [
 ];
 const financeReport2 = calculateTeamFinanceReport(salaries2, team2);
 console.log(JSON.stringify(financeReport2));
+/* see in console
+{"totalBudgetTeam":140909,"totalBudgetTeamLead":100000,"totalBudgetArchitect":40909}
+*/
