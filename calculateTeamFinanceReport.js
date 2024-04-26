@@ -1,5 +1,4 @@
 function calculateTeamFinanceReport(salaries, team) {
-  // the implementation of your function here
   const report = {
     totalBudgetTeam: 0,
   };
@@ -19,7 +18,10 @@ function calculateTeamFinanceReport(salaries, team) {
     }
 
     console.log(selaryGross);
-    report.totalBudgetTeam = Math.round(report.totalBudgetTeam);
+  }
+
+  for (const key in report) {
+    report[key] = Math.round(report[key]);
   }
   return report;
 }
