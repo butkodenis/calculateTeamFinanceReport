@@ -23,7 +23,7 @@ function calculateTeamFinanceReport(salaries, team) {
   }
 
   for (const key in report) {
-    report[key] = Math.floor(report[key]);
+    report[key] = Math.round(report[key]);
   }
   return report;
 }
